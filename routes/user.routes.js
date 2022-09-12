@@ -22,8 +22,15 @@ router.get('/profile/edit/:id', (req, res, next) => {
             res.render('user/edit', user)
         })
         .catch((err) => next(err))
-
 })
+
+router.get('/user/profile/delete/:id', (req, res, next) => {
+    User.findByIdAndDelete(req.params.id)
+        .then(() => {
+            res.redirect('/drones');
+        })
+        .catch((err) => next(err));
+});
 
 router.post('/usercreate', (req, res, next) => {
     const { username, email, password } = req.body;
@@ -36,9 +43,7 @@ router.post('/usercreate', (req, res, next) => {
         })
 });
 
-module.exports = router;
 router.post('/profile/edit/:id', (req, res, next) => {
-    // Iteration #4: Update the drone
     const { username, email, password } = req.body
     User.findByIdAndUpdate(req.params.id, { username, email, password })
         .then(() => {
@@ -46,3 +51,5 @@ router.post('/profile/edit/:id', (req, res, next) => {
         })
         .catch((err) => next(err));
 });
+
+module.exports = router;
