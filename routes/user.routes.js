@@ -3,15 +3,21 @@ const router = express.Router();
 bcrypt = require('bcrypt')
 const User = require('../models/user.model')
 
+
 router.get('/log-in', (_req, res) => res.render('user/log-in'))
 
-router.get('/profile', (_req, res) => {
-    User.find()
-        .then((users) => {
-            res.render('user/profile', { users })
-        })
-        .catch((err) => next(err))
-})
+
+
+
+
+
+// router.get('/profile', isLogedin, (_req, res) => {
+//     User.find()
+//         .then((users) => {
+//             res.render('user/profile', { users })
+//         })
+//         .catch((err) => next(err))
+// })
 
 router.get('/create', (_req, res) => {
     res.render('user/create')
@@ -66,6 +72,8 @@ router.post('/user/log-in', (req, res, next) => {
         })
         .catch(error => next(error))
 })
+
+
 
 
 router.post('user/log-out', (req, res) => {

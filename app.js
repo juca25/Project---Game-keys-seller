@@ -14,7 +14,7 @@ app.locals.siteTitle = `IronKeys`;
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
-
+require('./config/session.config')(app)
 
 const capitalized = require("./utils/capitalized");
 const projectName = "aame-seller";
@@ -27,6 +27,9 @@ app.use("/", index);
 
 let userRoutes = require('./routes/user.routes')
 app.use("/user", userRoutes);
+
+const isLogedin = require('./middleware/is_logedin.middleware');
+app.use('/', isLogedin);
 
 require("./error-handling")(app);
 
