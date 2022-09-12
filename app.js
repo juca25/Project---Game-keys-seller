@@ -1,6 +1,4 @@
 require("dotenv/config");
-
-
 require("./db");
 
 
@@ -12,7 +10,9 @@ const hbs = require("hbs");
 
 const app = express();
 
+app.locals.siteTitle = `IronKeys`;
 
+// ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
 
