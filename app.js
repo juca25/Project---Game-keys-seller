@@ -28,8 +28,11 @@ app.use("/", index);
 let userRoutes = require('./routes/user.routes')
 app.use("/user", userRoutes);
 
+let gameRoutes = require('./routes/game.routes')
+app.use("/", gameRoutes);
+
 const isLogedin = require('./middleware/is_logedin.middleware');
-// app.use('/', isLogedin);
+
 
 require("./error-handling")(app);
 

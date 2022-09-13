@@ -43,6 +43,21 @@ router.post('/create', (req, res, next) => {
         })
 });
 
+
+
+router.post('/profile/edit/:id', (req, res, next) => {
+    const { username, email, password } = req.body
+    User.findByIdAndUpdate(req.params.id, { username, email, password })
+        .then(() => {
+            res.redirect('/user/profile');
+        })
+        .catch((err) => next(err));
+});
+
+
+
+
+
 router.post('/log-out', (req, res) => {
     req.session.destroy(() => res.redirect('/'))
 })
