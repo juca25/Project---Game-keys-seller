@@ -69,7 +69,7 @@ router.post('/profile/edit/:id', (req, res, next) => {
 
 
 
-router.post('user/log-out', (req, res) => {
+router.post('/log-out', (req, res) => {
     req.session.destroy(() => res.redirect('/'))
 })
 

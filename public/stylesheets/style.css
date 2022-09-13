@@ -1,23 +1,69 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {
+	 height: 100%;
+	 margin: 0;
 }
-
-a {
-  color: #00b7ff;
+ body {
+	 background: #913D88;
+	 font: 13px monospace;
+	 color: #FFFFFF;
 }
-
-h1 {
-  color: 15px;
+ p {
+	 margin-top: 30px;
 }
-
-
-.gradient-custom {
-/* fallback for old browsers */
-background: #6a11cb;
-background-size: 100%;
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+ .cntr {
+	 display: table;
+	 width: 100%;
+	 height: 100%;
 }
+ .cntr .cntr-innr {
+	 display: table-cell;
+	 text-align: center;
+	 vertical-align: middle;
+}
+ .search {
+	 display: inline-block;
+	 position: relative;
+	 height: 35px;
+	 width: 35px;
+	 box-sizing: border-box;
+	 margin: 0px 8px 7px 0px;
+	 padding: 7px 9px 0px 9px;
+	 border: 3px solid #FFFFFF;
+	 border-radius: 25px;
+	 transition: all 200ms ease;
+	 cursor: text;
+}
+ .search:after {
+	 content: "";
+	 position: absolute;
+	 width: 3px;
+	 height: 20px;
+	 right: -5px;
+	 top: 21px;
+	 border-radius: 3px;
+	 transform: rotate(-45deg);
+	 transition: all 200ms ease;
+}
+ .search.active, .search:hover {
+	 width: 700px;
+	 height: 50px;
+	 margin-right: 0px;
+}
+ .search.active:after, .search:hover:after {
+	 height: 0px;
+}
+ .search input {
+	 width: 100%;
+	 border: none;
+	 box-sizing: border-box;
+	 font-family: Helvetica;
+	 font-size: 25px;
+	 color: inherit;
+	 background: transparent;
+	 outline-width: 0px;
+	 text-align: center;
+}
+ 
+
+
+
