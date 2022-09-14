@@ -14,6 +14,8 @@ router.get('/profile', isLogedin, (req, res) => {
 })
 module.exports = router;
 
+
+
 router.get('/profile/:id', (req, res, next) => {
   const { id: userId } = req.params
   User.findById(userId)

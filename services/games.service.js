@@ -14,7 +14,7 @@ class gamesService {
   }
 
   getGameDeal(id) {
-    return this.axios.get(`/api/1.0/deals?id=${id}`).then((res) => res.data);
+    return this.axios.get(`/api/1.0/games?id=${id}`).then((res) => res.data);
   }
 
 }
