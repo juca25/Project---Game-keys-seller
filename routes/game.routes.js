@@ -9,6 +9,9 @@ router.get('/deals', (_req, res, next) => {
         .then((deals) => {
             //   res.json(deals);
             const list = deals
+
+            console.log(deals)
+
             // console.log('AQUI VAN LAS GANGUITAS =>',{list});
             res.render('game/gamelist', { list })
         })
@@ -16,23 +19,29 @@ router.get('/deals', (_req, res, next) => {
 });
 
 // seleccionar juegos
-router.get('/game/:title', (req, res, next) => {
+router.get('/game/get/title', (req, res, next) => {
+
+    const { title } = req.query
+
     gamesService
-        .getDealList(req.params.title)
+        .getDealList(title)
         .then((game) => {
-            //   console.log(game);
-            res.json(game);
+
+
+            // res.json(game)
+            res.render('game/gamessearch', { game })
         })
         .catch((err) => next(err));
 });
 
-router.get('/game/games/:gameID', (req, res, next) => {
+router.get('/check-game/:gameID', (req, res, next) => {
     gamesService
         .getGameDeal(req.params.gameID)
         .then((game) => {
-            console.log(game.deals.price)
-            //   console.log(game);
-            res.json(game);
+            // console.log(game.deals.price)
+            console.log(game);
+            // res.json(game);
+            res.render('game/check-game', game)
         })
         .catch((err) => next(err));
 });
@@ -62,6 +71,16 @@ router.get('/redirect/:dealID', (req, res, next) => {
         .then((game) => {
             console.log(game);
             res.json(game);
+        })
+        .catch((err) => next(err));
+});
+
+router.post('/:title', (req, res, next) => {
+    gamesService
+        .getDealList(req.params.title)
+        .then((game) => {
+            //   console.log(game);
+            res.redirect('game/:id')
         })
         .catch((err) => next(err));
 });
