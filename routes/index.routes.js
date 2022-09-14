@@ -1,18 +1,19 @@
 const router = require("express").Router();
 const isLogedin = require("../middleware/is_logedin.middleware");
 const User = require('../models/user.model')
-
+const gamesService = require('../services/games.service');
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+
 
 router.get('/profile', isLogedin, (req, res) => {
   const user = req.session.user;
   console.log(user)
   res.render('user/profile', user);
 })
-module.exports = router;
+
 
 router.get('/profile/:id', (req, res, next) => {
   const { id: userId } = req.params
@@ -24,6 +25,7 @@ router.get('/profile/:id', (req, res, next) => {
 })
 
 
+
 router.post('/profile/:id', (req, res, next) => {
   const { username, email, password } = req.body
   User.findByIdAndUpdate(req.params.id, { username, email, password })
@@ -33,4 +35,5 @@ router.post('/profile/:id', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+module.exports = router;
 

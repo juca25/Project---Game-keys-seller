@@ -1,9 +1,9 @@
 const express = require('express');
 const isLogedin = require('../middleware/is_logedin.middleware');
 const router = express.Router();
-// bcrypt = require('bcrypt')
+bcrypt = require('bcrypt')
 const User = require('../models/user.model')
-
+const saltRounds = 10
 
 router.get('/log-in', (_req, res) => res.render('user/log-in'))
 
@@ -32,9 +32,25 @@ router.post('/log-in', (req, res, next) => {
         .catch(error => next(error))
 })
 
+router.get('/delete/:id', (req, res, next) => {
+    User.findByIdAndDelete(req.params.id)
+        .then(() => {
+            res.redirect('/');
+        })
+        .catch((err) => next(err));
+});
+
 router.post('/create', (req, res, next) => {
     const { username, email, password } = req.body;
-    User.create({ username, email, password })
+    bcrypt.
+        genSalt(10)
+        .then((salts) => {
+            return bcrypt.hash(password, salts)
+
+        })
+        .then((pass) => {
+            return User.create({ password: pass, username, email })
+        })
         .then(() => {
             res.redirect('/')
         })
@@ -42,21 +58,6 @@ router.post('/create', (req, res, next) => {
             next(err);
         })
 });
-
-
-
-router.post('/profile/edit/:id', (req, res, next) => {
-    const { username, email, password } = req.body
-    User.findByIdAndUpdate(req.params.id, { username, email, password })
-        .then(() => {
-            res.redirect('/user/profile');
-        })
-        .catch((err) => next(err));
-});
-
-
-
-
 
 router.post('/log-out', (req, res) => {
     req.session.destroy(() => res.redirect('/'))

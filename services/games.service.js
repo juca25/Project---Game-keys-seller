@@ -6,14 +6,9 @@ class gamesService {
       baseURL: 'https://www.cheapshark.com'
     });
   }
-  
+
   getGameDeals() {
     return this.axios.get('/api/1.0/deals').then((res) => res.data);
-  }
-
-  //Get info for a specific deal
-  getGameDeal(id) {
-    return this.axios.get(`/api/1.0/deals?id=${id}`).then((res) => res.data);
   }
 
   //Gets info for a specific game
@@ -30,7 +25,7 @@ class gamesService {
   getStore() {
     return this.axios.get(`/api/1.0/stores`).then((res) => res.data);
   }
-  
+
   getThumb(thumb) {
     return this.axios.get(`/api/1.0/thumb=${thumb}`).then((res) => res.data);
   }
@@ -38,10 +33,10 @@ class gamesService {
   getRedirect(dealID) {
     return this.axios.get(`https://www.cheapshark.com/redirect?dealID=${dealID}`).then((res) => res.data);
   }
-  
 
 
-  
+
+
 
 }
 
