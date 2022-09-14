@@ -17,7 +17,8 @@ const userSchema = new Schema(
       type: String,
       min: 5,
       requiere: true
-    }
+    },
+    favs: [{type: Schema.Types.ObjectId, ref: 'user'}]
   },
   {
 

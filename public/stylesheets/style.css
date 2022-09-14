@@ -2,6 +2,8 @@ html, body {
 	 height: 100%;
 	 margin: 0;
 }
+
+/* INDEX */
  .index {
 	 background: #913D88;
 	 font: 13px monospace;
@@ -62,8 +64,5 @@ html, body {
 	 background: transparent;
 	 outline-width: 0px;
 	 text-align: center;
-}
- 
-
-
-
+	}
+	

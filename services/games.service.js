@@ -27,8 +27,8 @@ class gamesService {
   }
 
   //Get a paged list of deals matching any number of criteria
-  getStore(storeID) {
-    return this.axios.get(`/api/1.0/deals?storeID=${storeID}`).then((res) => res.data);
+  getStore() {
+    return this.axios.get(`/api/1.0/stores`).then((res) => res.data);
   }
   
   getThumb(thumb) {
@@ -36,7 +36,7 @@ class gamesService {
   }
   //Get redirect to original buy url
   getRedirect(dealID) {
-    return this.axios.get(`/redirect?dealID=${dealID}`).then((res) => res.data);
+    return this.axios.get(`https://www.cheapshark.com/redirect?dealID=${dealID}`).then((res) => res.data);
   }
   
 
