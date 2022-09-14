@@ -2,7 +2,7 @@ html, body {
 	 height: 100%;
 	 margin: 0;
 }
- body {
+ .index {
 	 background: #913D88;
 	 font: 13px monospace;
 	 color: #FFFFFF;
