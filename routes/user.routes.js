@@ -119,7 +119,7 @@ router.get('/games/created-game-view', (req, res, next) => {
 
 
 // esta ruta tendrá que visualizar los juegos favoritos del user
-router.get('/data2', isLogedin, (req, res) => {
+router.get('/fav-list', isLogedin, (req, res) => {
     const user = req.session.user._id
     User
         .findById(user)
