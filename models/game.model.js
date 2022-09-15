@@ -6,29 +6,12 @@ const gameSchema = new Schema(
             type: String,
             requiere: true,
         },
-        salePrice: {
-            type: String,
-            requiere: true,
-        },
-        plataform: {
-            type: String,
-            requiere: true,
-        },
-        added_date: {
-            type: Date,
-            default: Date.now
+        addedBy: {
+            type: Schema.Types.ObjectId, ref: "User"
         }
-        // added_by: {
-        //     type: Schema.Types.ObjectId, ref: 'username'
-        //  /* añadir middleware con un populate para almacenar qué usuario ha añadido el juego */
-        // }
-    },
-    {
-
-        timestamps: true,
     }
 );
 
-const User = model("User", gameSchema);
+const Game = model("Game", gameSchema);
 
 module.exports = Game;

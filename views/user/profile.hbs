@@ -1,4 +1,4 @@
-<div class="container" style="background: #6a11cb;">
+<div style="background: #6a11cb">
     <div class="row justify-content-center">
 
         <div class="col-md-4">
@@ -23,6 +23,24 @@
                 <form action="/user/delete/{{_id}}"></form>
                 <button type="submit" class="btn btn-dark btn-block"><a href="/user/delete/{{_id}}">Borrar
                         cuenta</a></button>
+            </form>
+            </form>
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <h1>Edición de juegos</h1>
+            <br>
+            <hr>
+            <br>
+            <form action="/profile/{{_id}}" method="POST">
+                <div class="form-group">
+                    <label for="username">Title</label>
+                    <input type="text" class="form-control" name="title">
+                </div>
+                {{!-- <button type="submit" class="btn btn-dark btn-block">Editar</button>
+                <form action="/user/delete/{{_id}}"></form>
+                <button type="submit" class="btn btn-dark btn-block"><a href="/user/delete/{{_id}}">Borrar
+                        juego</a></button> --}}
             </form>
             </form>
             <hr>

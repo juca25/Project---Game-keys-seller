@@ -17,7 +17,7 @@ router.get('/deals', (_req, res, next) => {
       .then((stores)=>{
         // res.json(stores)
         for (let i = 0;i < list.length; i++) {
-          for (let j = 0;j < stores.length; j++)
+          for (let j = 0;j < stores.length; j++)    
             if (list[i].storeID == stores[j].storeID)
               list[i].name = stores[j].storeName
         }
