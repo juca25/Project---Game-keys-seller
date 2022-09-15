@@ -23,12 +23,22 @@ router.get('/profile/:id', (req, res, next) => {
         const { id: userId } = req.params
         User.findById(userId)
         .then(user => {
-        res.render('user/edit', user)
-    })
-        .catch((err) => next(err))
-    })
- router.get('/delete/:id', (req, res, next) => {
-        User.findByIdAndDelete(req.params.id)
+            if (!user) {
+                res.render('user/log-in', console.log('Email o contraseña incorrecta'))
+                return
+            } else if ((password, user.password) === false) {
+                res.render('user/log-in', console.log('Email o contraseña incorrecta'))
+                return
+            } else {
+                req.session.user = user
+                res.redirect('user/profile')
+            }
+        })
+        .catch(error => next(error))
+})
+
+router.get('/delete/:id', (req, res, next) => {
+    User.findByIdAndDelete(req.params.id)
         .then(() => {
                 res.redirect('/');
             })
@@ -44,14 +54,41 @@ router.get('/profile/:id', (req, res, next) => {
             return bcrypt.hash(password, salts)
 
         })
-        .then((pass) => {
-            return User.create({ password: pass, username, email })
-        })
-        .then(() => {
-            res.redirect('/')
+// crear route get para mostrar el hbs 'create-games' para poder utilizar el form
+router.get('/create-game',(req,res, next) => {
+    res.render('create-game')
+})
+// modificar la ruta para poder crear por le método POST el juego (recordar poner la ruta)
+router.post('/create-game',(req, res,next)=>{
+    let data = {
+        title: req.body.title,
+        addedBy: res.session.user._id
+    }
+    let favGame = new Game(data)
+    // falta controlar el error
+    favGame.save()
+    .then(() => {
+        res.redirect('/user/profile')
+    })
+    .catch((err) => next(err))
+})
+
+
+
+
+// esta ruta tendrá que visualizar los juegos favoritos del user
+router.get('/data', isLogedin, (req, res) => {
+    const user = req.session.user._id
+    User
+        .findById(user._id)
+        .populate('favs')
+        .then((favGame) => {
+            console.log(favGame)
+            // crear en hbs para poder ver los detalles de los juegos favs
+            res.render('user/profile', { favGame })
         })
         .catch((err) => {
-            next(err);
+            next(err)
         })
 });
     router.post('/log-in', (req, res, next) => {
