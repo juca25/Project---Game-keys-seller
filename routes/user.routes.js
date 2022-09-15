@@ -3,7 +3,8 @@ const isLogedin = require('../middleware/is_logedin.middleware');
 const router = express.Router();
 bcrypt = require('bcrypt')
 const User = require('../models/user.model')
-const Game = require('../models/game.model')
+const Game = require('../models/game.model');
+const { populate } = require('../models/user.model');
 const saltRounds = 10
 
 router.get('/log-in', (_req, res) => res.render('user/log-in'))
@@ -123,6 +124,7 @@ router.post('/log-out', (req, res) => {
     req.session.destroy(() => res.redirect('/'))
 })
 
+
 // falta un params de id. La ruta tiene que buscar un único juego creado de vuestra BD
 router.get('/games/created-game-view/:idGame', (req, res, next) => {
     Game.findById(req.params.idGame)
@@ -134,7 +136,7 @@ router.get('/games/created-game-view/:idGame', (req, res, next) => {
 })
 
 
-router.get('/games/users', (req, res, next) => {
+router.get('/allgames', (req, res, next) => {
     // crear un populated para ver el nombre del creador del juego
     Game.find(req.params)
         .populate('addedBy')
@@ -151,8 +153,8 @@ router.get('/list-favs', isLogedin, (req, res) => {
         .findById(user)
         .populate('favs')
         .then((user) => {
-            console.log(user)
             // crear en hbs para poder ver los detalles de los juegos favs
+            // console.log(user.favs)
             res.render('user/games/fav-games', { favs: user.favs })
         })
         .catch((err) => {
@@ -164,8 +166,6 @@ router.get('/list-favs', isLogedin, (req, res) => {
 router.get('/fav/:id', isLogedin, (req, res, next) => {
     const user = req.session.user._id
     const favGame = req.params.id
-    console.log(user)
-    console.log(favGame)
     User
         .findByIdAndUpdate(user, { $addToSet: { favs: favGame } }, { new: true })
         .then((favGame) => {
@@ -175,5 +175,22 @@ router.get('/fav/:id', isLogedin, (req, res, next) => {
         .catch((err) =>
             next(err))
 })
+
+router.get('/fav/delete/:id', (req, res, next) => {
+    const user = req.session.user.id
+    User.findOneAndUpdate({ favs: { $in: [req.params.id] } }, { $pull: { favs: req.params.id } }, { new: true })
+        .then((updateFav) => {
+            req.session.user = updateFav
+            return Game.findByIdAndUpdate((req.params.id), {
+                $pull: { user: req.session.user._id }
+            })
+                .then(() => {
+
+                    res.redirect('/user/list-favs');
+                })
+        })
+        .catch((err) => next(err));
+});
+
 
 module.exports = router

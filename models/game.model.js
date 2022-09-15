@@ -12,7 +12,7 @@ const gameSchema = new Schema(
         },
         img: {
             type: String,
-            default: 'https://wpdirecto.com/wp-content/uploads/2017/08/alt-de-una-imagen.png'
+            default: 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa.png'
         },
         addedBy: {
             type: Schema.Types.ObjectId, ref: "User"

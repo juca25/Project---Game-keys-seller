@@ -1,5 +1,9 @@
 {{#each favs}}
 <p>{{title}}</p>
 <p>{{price}}</p>
+<form action="/user/fav/delete/{{id}}"></form>
+<button type="submit" class="btn btn-dark btn-block"><a href="/user/fav/delete/{{id}}">Borrar
+        favorito</a></button>
+
 <img src="{{img}}" width="200px" height="200px" alt="">
 {{/each}}
