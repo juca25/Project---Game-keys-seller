@@ -1,0 +1,5 @@
+|  HTTP METHOD  |  URI PATH |  DESCRIPTION  |
+| ------------- |:-------------:| -----:|
+| GET | / | SEARCH BROWSER |
+| GET | centered      |   $12 |
+| GET | are neat      |    $1 |
