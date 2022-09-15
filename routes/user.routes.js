@@ -3,7 +3,7 @@ const isLogedin = require('../middleware/is_logedin.middleware');
 const router = express.Router();
 bcrypt = require('bcrypt')
 const User = require('../models/user.model')
-const Game = require('../models/user.model')
+const Game = require('../models/game.model')
 const saltRounds = 10
 
 
@@ -126,54 +126,58 @@ router.post('/log-out', (req, res) => {
 })
 // crear route get para mostrar el hbs 'create-games' para poder utilizar el form
 router.get('/create-game',(req,res, next) => {
-    res.render('create-game')
+    res.render('user/games/create-game')
 })
 // modificar la ruta para poder crear por le método POST el juego (recordar poner la ruta)
 router.post('/create-game',(req, res,next)=>{
     let data = {
         title: req.body.title,
-        addedBy: res.session.user._id
+        addedBy: req.session.user._id
     }
     let favGame = new Game(data)
-    // falta controlar el error
+    console.log(favGame)
     favGame.save()
     .then(() => {
-        res.redirect('/user/profile')
+        res.redirect('/user/games/created-game-view')
     })
     .catch((err) => next(err))
+})
+
+router.get('/games/created-game-view',(req, res, next) => {
+    res.render('user/games/created-games-view')
 })
 
 
 
 
 // esta ruta tendrá que visualizar los juegos favoritos del user
-router.get('/data', isLogedin, (req, res) => {
-    const user = req.session.user._id
-    User
-        .findById(user._id)
-        .populate('favs')
-        .then((favGame) => {
-            console.log(favGame)
-            // crear en hbs para poder ver los detalles de los juegos favs
-            res.render('user/profile', { favGame })
-        })
-        .catch((err) => {
-            next(err)
-        })
-})
+// router.get('/data', isLogedin, (req, res) => {
+//     const user = req.session.user._id
+//     User
+//         .findById(user._id)
+//         .populate('favs')
+//         .then((favGame) => {
+//             console.log(favGame)
+//             // crear en hbs para poder ver los detalles de los juegos favs
+//             res.render('user/fav-games', { favGame })
+//         })
+//         .catch((err) => {
+//             next(err)
+//         })
+// })
 
-// Esta ruta tiene que ser un GET y tendra que actualizar el usuario con el juego que quiere guardar a favs
-router.get('/fav/:id', isLogedin, (req,res,next) => {
-    const user = req.session.user._id
-    const favGame = req.params.id
-    User
-    .findByIdAndUpdate(user, {$addToSet: {favs : favGame}}, {new: true})
-    .then((favGame) => {
-        console.log(favGame)
-        res.render('user/profile')
-    })
-    .catch((err) => 
-        next(err))
-    })
+// // Esta ruta tiene que ser un GET y tendra que actualizar el usuario con el juego que quiere guardar a favs
+// router.get('/fav/:id', isLogedin, (req,res,next) => {
+//     const user = req.session.user._id
+//     const favGame = req.params.id
+//     User
+//     .findByIdAndUpdate(user, {$addToSet: {favs : favGame}}, {new: true})
+//     .then((favGame) => {
+//         console.log(favGame)
+//         res.render('user/profile')
+//     })
+//     .catch((err) => 
+//         next(err))
+//     })
     
 module.exports = router
