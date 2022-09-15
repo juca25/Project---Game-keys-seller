@@ -1,5 +1,21 @@
-{{#each games}}
-<p>{{title}}</p>
-<p>{{addedBy.username}}</p>
-<a href="/user/fav/{{_id}}">favoritos</a>
-{{/each}}
+<div class="d-flex flex-wrap justify-content-center ">
+    {{#each games}}
+    {{!-- <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{img}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">Articulo vendido por:<br>{{addedBy.username}}</p>
+            <a href="/user/fav/{{_id}}" class="btn btn-primary">Añadir a favoritos</a>
+        </div>
+    </div> --}}
+
+    <div class="card my-5 mx-5" style="width: 300px;">
+        <img src="{{img}}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">Articulo vendido por:<br>{{addedBy.username}}.</p>
+            <a href="/user/fav/{{_id}}" class="btn btn-primary">Añadir a favoritos</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

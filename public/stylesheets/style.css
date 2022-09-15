@@ -2,10 +2,63 @@ html, body {
 	 height: 100%;
 	 margin: 0;
 }
+/* NAVBAR */
+.navbar {
+	background-color: black;
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    background: #fff;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #fff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
 
 /* INDEX */
  .index {
-	 background: #913D88;
+	 /* background-image:url("/public/images/index.png"); */
 	 font: 18px monospace;
 	 color: #FFFFFF;
 }
@@ -20,7 +73,8 @@ html, body {
  .cntr .cntr-innr {
 	 display: table-cell;
 	 text-align: center;
-	 vertical-align: middle;
+	 vertical-align: bottom;
+	 color: black;
 }
  .search {
 	 display: inline-block;
@@ -30,7 +84,7 @@ html, body {
 	 box-sizing: border-box;
 	 margin: 0px 8px 7px 0px;
 	 padding: 7px 9px 0px 9px;
-	 border: 3px solid #FFFFFF;
+	 border: 3px solid black;
 	 border-radius: 25px;
 	 transition: all 200ms ease;
 	 cursor: text;
@@ -95,3 +149,8 @@ h5{
 	font-size: 16px
 }
 
+body {
+  background-image: url("/images/index.png");
+  background-repeat:no-repeat;
+  background-size: cover;
+}
