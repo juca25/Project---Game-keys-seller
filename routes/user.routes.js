@@ -19,14 +19,14 @@ router.post('/log-in', (req, res, next) => {
         .findOne({ email })
         .then(user => {
             if (!user) {
-                res.render('user/log-in', console.log('nombre inc'))
+                res.render('user/log-in', console.log('Email o contraseña incorrecta'))
                 return
             } else if ((password, user.password) === false) {
-                res.render('user/log-in', console.log('contraseña inc'))
+                res.render('user/log-in', console.log('Email o contraseña incorrecta'))
                 return
             } else {
                 req.session.user = user
-                res.redirect('/profile')
+                res.redirect('user/profile')
             }
         })
         .catch(error => next(error))

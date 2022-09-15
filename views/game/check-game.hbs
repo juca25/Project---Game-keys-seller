@@ -1,10 +1,38 @@
-<h1>{{info.title}}</h1>
+{{!-- {{game.info.title}}
+<img src="{{game.info.thumb}}" alt="">
+<p>{{game.cheapestPriceEver.price}}</p> --}}
 
-{{#each deals}}
-<h2>{{storeID}}</h2>
-<h2>{{price}}</h2>
-<h2>{{retailPrice}}</h2>
-<h2>{{savings}}</h2>
 
+{{#each list}}
+<div class="mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="row p-2 bg-white border rounded">
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{info}}">
+                </div>
+                <div class="col-md-6 mt-1">
+                    <h5>{{title}}</h5>
+                    <div class="mt-1 mb-1 spec-1"><span>Juego vendido por:
+                            <br>{{name}}</span><br><span>Valoración:</span>
+                    </div>
+
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+                        <h4 class="mr-1">{{price}}$</h4>
+                        <span class="strike-text">Antes: {{retailPrice}}$</span>
+                    </div>
+                    <h6 class="text-success">Descuento: {{savings}}%</h6>
+                    <div class="d-flex flex-column mt-4">
+                        <button class="btn btn-primary btn-sm text-white" type="button">
+                            <a class="text-white" href="https://www.cheapshark.com/redirect?dealID={{dealID}}"
+                                target="_blank">Comprar</a>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{/each}}
-<img src="{{thumb}}" alt="">
