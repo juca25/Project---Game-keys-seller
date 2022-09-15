@@ -52,7 +52,7 @@ router.get('/delete/:id', (req, res, next) => {
         genSalt(10)
         .then((salts) => {
             return bcrypt.hash(password, salts)
-
+            }
         })
 // crear route get para mostrar el hbs 'create-games' para poder utilizar el form
 router.get('/create-game',(req,res, next) => {
@@ -176,4 +176,4 @@ router.get('/fav/:id', isLogedin, (req,res,next) => {
         next(err))
     })
     
-module.exports = router; 
+module.exports = router
