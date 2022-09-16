@@ -126,17 +126,17 @@ router.post('/log-out', (req, res) => {
 
 
 // falta un params de id. La ruta tiene que buscar un único juego creado de vuestra BD
-router.get('/games/created-game-view/:idGame', (req, res, next) => {
+router.get('/games/created-game-view', (req, res, next) => {
     Game.findById(req.params.idGame)
         .populate('addedBy')
         .then(game => {
-            res.render('user/games/created-games-view', game)
+            res.render('user/gallery', game)
         })
         .catch(err => next(err))
 })
 
 
-router.get('/allgames', (req, res, next) => {
+router.get('/gallery', (req, res, next) => {
     // crear un populated para ver el nombre del creador del juego
     Game.find(req.params)
         .populate('addedBy')

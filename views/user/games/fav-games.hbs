@@ -1,9 +1,14 @@
-{{#each favs}}
-<p>{{title}}</p>
-<p>{{price}}</p>
-<form action="/user/fav/delete/{{id}}"></form>
-<button type="submit" class="btn btn-dark btn-block"><a href="/user/fav/delete/{{id}}">Borrar
-        favorito</a></button>
-
-<img src="{{img}}" width="200px" height="200px" alt="">
-{{/each}}
+<div class="vh-100 mt-5" style="background: #6a11cb">
+        <div class="d-flex flex-wrap justify-content-center ">
+                {{#each favs}}
+                <div class="card my-5 mx-5" style="width: 300px;">
+                        <img src="{{img}}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                                <h5 class="card-title">{{title}}</h5>
+                                <p class="card-text">{{price}}$</p>
+                                <a href="/user/fav/delete/{{id}}" class="btn btn-primary">Borrar favorito</a>
+                        </div>
+                </div>
+                {{/each}}
+        </div>
+</div>

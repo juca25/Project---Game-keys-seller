@@ -1,39 +1,19 @@
-{{!-- {{game.info.title}}
-<img src="{{game.info.thumb}}" alt="">
-<p>{{game.cheapestPriceEver.price}}</p> --}}
-
-
-{{#each list}}
-<div class="mt-5 mb-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-10">
-            <div class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{info}}">
-                </div>
-                <div class="col-md-6 mt-1">
-                    <h5>{{title}}</h5>
-                    <div class="mt-1 mb-1 spec-1"><span>Juego vendido por:
-                            <br>{{name}}</span><br><span>Valoración:</span>
-                    </div>
-
-                </div>
-                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h4 class="mr-1">{{price}}$</h4>
-                        <span class="strike-text">Antes: {{retailPrice}}$</span>
-                    </div>
-                    <h6 class="text-success">Descuento: {{savings}}%</h6>
-                    <div class="d-flex flex-column mt-4">
-                        <button class="btn btn-primary btn-sm text-white" type="button">
-                            <a class="text-white" href="https://www.cheapshark.com/redirect?dealID={{dealID}}"
-                                target="_blank">Comprar</a>
-                        </button>
-                        {{!-- <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
-                        --}}
-                    </div>
-                </div>
+<div class="vh-100 mt-5" style="background: #6a11cb">
+    <div class="d-flex flex-wrap justify-content-center ">
+        {{#each list}}
+        <div class="card my-5 mx-5" style="width: 300px;">
+            <img src="{{thumb}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{title}}</h4>
+                <p class="card-text">Juego vendido por:
+                    <br>{{name}}
+                </p>
+                <p class="card-text">Antes: {{retailPrice}}$</p>
+                <p class="card-text">Descuento: {{savings}}%</p>
+                <h6 class="card-text">Precio final: {{price}}$</h6>
+                <a href="https://www.cheapshark.com/redirect?dealID={{dealID}}" class="btn btn-primary">Comprar</a>
             </div>
         </div>
+        {{/each}}
     </div>
 </div>
-{{/each}}

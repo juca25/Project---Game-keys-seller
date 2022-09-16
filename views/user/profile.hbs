@@ -1,4 +1,4 @@
-<div style="background: #6a11cb">
+<div class="vh-100 mt-5" style="background: #6a11cb">
     <div class="row justify-content-center">
 
         <div class="col-md-4">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Cambiar contraseña</label>
-                    <input value="" type="password" class="form-control" name="password">
+                    <input value="{{password}} " type="password" class="form-control" name="password">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Editar</button>
                 <form action="/user/delete/{{_id}}"></form>
@@ -28,16 +28,11 @@
             <hr>
         </div>
         <div class="col-md-4">
-            <h1>Edición de juegos</h1>
+            <h1>Tus juegos</h1>
             <br>
             <hr>
             <br>
             <form action="/profile/{{_id}}" method="POST">
-                <div class="form-group">
-                    <label for="username">Title</label>
-                    <input type="text" class="form-control" name="title">
-                </div>
-
                 <button type="submit" class="btn btn-dark btn-block"><a href="/user/created-game-view">Tus
                         ofertas</a></button>
                 <button type="submit" class="btn btn-dark btn-block"><a href="/user/list-favs">Tus
@@ -48,7 +43,67 @@
         </div>
     </div>
 </div>
-{{!-- <button type="submit" class="btn btn-dark btn-block">Editar</button>
-<form action="/user/delete/{{_id}}"></form>
-<button type="submit" class="btn btn-dark btn-block"><a href="/user/delete/{{_id}}">Borrar
-        juego</a></button> --}}
+
+
+{{!-- <div class="vh-100 mt-5" style="background: #6a11cb">
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                        width="150px"
+                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                        class="font-weight-bold">{{username}}</span><span class="text-black-50">{{email}}</span><span>
+                    </span></div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Usuario</label><input type="text"
+                                class="form-control" placeholder="first name" value="username"></div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Numero de telefono</label><input type="text"
+                                class="form-control" placeholder="introducir numero de telefono" value=""></div>
+                        <div class="col-md-12"><label class="labels">Email</label><input type="text"
+                                class="form-control" placeholder="introducir email" value="email"></div>
+                        <div class="col-md-12"><label class="labels">Direccion</label><input type="text"
+                                class="form-control" placeholder="enter address line 1" value=""></div>
+                        <div class="col-md-12"><label class="labels">Direccion 2</label><input type="text"
+                                class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">Codigo postal</label><input type="text"
+                                class="form-control" placeholder="introcducir codigo postal" value=""></div>
+                        <div class="col-md-12"><label class="labels">Localidad</label><input type="text"
+                                class="form-control" placeholder="introducir localidad" value=""></div>
+                        <div class="col-md-12"><label class="labels">Provincia</label><input type="text"
+                                class="form-control" placeholder="introducir provincia" value=""></div>
+                        <div class="col-md-6"><label class="labels">Pais</label><input type="text" class="form-control"
+                                placeholder="country" value=""></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Editar
+                            perfil</button></div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"><a
+                                href="/user/delete/{{_id}}">Borrar cuenta</a></button></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Editar
+                            Ofertas y lista de favoritos</span>
+                    </div><br>
+                    <form action="/profile/{{_id}}" method="POST">
+                        <button type="submit" class="btn btn-info btn-block"><a href="/user/created-game-view">Tus
+                                ofertas</a></button>
+                        <button type="submit" class="btn btn-info btn-block"><a href="/user/list-favs">Tus
+                                juegos favoritos</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div> --}}
